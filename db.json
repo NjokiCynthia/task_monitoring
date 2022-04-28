@@ -1,4 +1,22 @@
 {
   "tasks": [
+    {
+      "id" : 1,
+     "text" : "Doctors Appointment",
+      "day" : "Monday 5th Feb 2020",
+      "reminder" :true
+  },
+  {
+     "id" : 2,
+      "text" : "Lecturers Appointment",
+      "day" : "Wednesday 7th Feb 2020",
+      "reminder" :true
+  },
+  {
+      "id" : 3,
+      "text" : "Learning React",
+      "day" : "Friday 9th Feb 2020",
+      "reminder" :false
+  }
   ]
 }

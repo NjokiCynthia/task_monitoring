@@ -1,42 +1,37 @@
 // //import logo from './logo.svg';
 import Header from './components/Header';
 import Tasks from './components/Tasks'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AddTask from './components/AddTask';
 
 import './index.css';
 
  const App =()=> {
      const [showAddTask, setShowAddTask]= useState(false)
-    const [tasks, setTasks] = useState(
-        [
-            {
-                id : 1,
-                text : 'Doctors Appointment',
-                day : 'Monday 5th Feb 2020',
-                reminder :true
-            },
-            {
-                id : 2,
-                text : 'Lecturers Appointment',
-                day : 'Wednesday 7th Feb 2020',
-                reminder :true
-            },
-            {
-                id : 3,
-                text : 'Learning React',
-                day : 'Friday 9th Feb 2020',
-                reminder :false
-            }
-        ]
-
-    )
+    const [tasks, setTasks] = useState([] )
 
 //Delete funtion
 const deleteTask = (id) => {
     setTasks(
     tasks.filter((task) => task.id !== id))
 }
+
+useEffect(()=>{
+
+    const getTasks = async () => {
+        const tasksFromServer = await fetchTasks()
+        setTasks(tasksFromServer)
+    }
+getTasks()
+}, [] )
+//Fetch tasks
+const fetchTasks= async ()=>{
+const res = await fetch('http://localhost:5000/tasks') 
+const data = await res.json()
+
+return data
+}
+
 //Add task
 const addTask = (task) => {
  const id = Math.floor(Math.random() *1000)+1  
